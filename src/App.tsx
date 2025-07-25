@@ -15,38 +15,104 @@ function Home() {
   // Load messages from server
   useEffect(() => {
     fetch('/api/messages')
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then(data => {
-        setGuestbookMessages(data);
+        if (Array.isArray(data)) {
+          setGuestbookMessages(data);
+        } else {
+          console.error('Invalid data format:', data);
+          // Fallback to localStorage or default messages
+          const saved = localStorage.getItem('guestbookMessages');
+          if (saved) {
+            try {
+              const parsed = JSON.parse(saved);
+              if (Array.isArray(parsed)) {
+                setGuestbookMessages(parsed);
+              } else {
+                throw new Error('Invalid localStorage data');
+              }
+            } catch (e) {
+              setGuestbookMessages([
+                { name: 'Sasho', message: 'Alles Gute zum Geburtstag, Eggo! 🎉' },
+                { name: 'Anonym', message: 'Happy Birthday! Hoffe du hast einen tollen Tag! 🎂' }
+              ]);
+            }
+          } else {
+            setGuestbookMessages([
+              { name: 'Sasho', message: 'Alles Gute zum Geburtstag, Eggo! 🎉' },
+              { name: 'Anonym', message: 'Happy Birthday! Hoffe du hast einen tollen Tag! 🎂' }
+            ]);
+          }
+        }
         setLoading(false);
       })
       .catch(error => {
         console.error('Error loading messages:', error);
+        // Fallback to localStorage or default messages
+        const saved = localStorage.getItem('guestbookMessages');
+        if (saved) {
+          try {
+            const parsed = JSON.parse(saved);
+            if (Array.isArray(parsed)) {
+              setGuestbookMessages(parsed);
+            } else {
+              throw new Error('Invalid localStorage data');
+            }
+          } catch (e) {
+            setGuestbookMessages([
+              { name: 'Sasho', message: 'Alles Gute zum Geburtstag, Eggo! 🎉' },
+              { name: 'Anonym', message: 'Happy Birthday! Hoffe du hast einen tollen Tag! 🎂' }
+            ]);
+          }
+        } else {
+          setGuestbookMessages([
+            { name: 'Sasho', message: 'Alles Gute zum Geburtstag, Eggo! 🎉' },
+            { name: 'Anonym', message: 'Happy Birthday! Hoffe du hast einen tollen Tag! 🎂' }
+          ]);
+        }
         setLoading(false);
       });
   }, []);
 
   const handleSubmitMessage = async () => {
     if (newName.trim() && newMessage.trim()) {
+      const newMsg = { name: newName, message: newMessage };
+      
       try {
         const response = await fetch('/api/messages', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ name: newName, message: newMessage }),
+          body: JSON.stringify(newMsg),
         });
 
         if (response.ok) {
-          const newMsg = await response.json();
-          setGuestbookMessages([...guestbookMessages, newMsg]);
-          setNewName('');
-          setNewMessage('');
+          const savedMsg = await response.json();
+          setGuestbookMessages([...guestbookMessages, savedMsg]);
         } else {
-          console.error('Failed to save message');
+          console.error('Failed to save message to server, using localStorage fallback');
+          // Fallback to localStorage
+          const updatedMessages = [...guestbookMessages, newMsg];
+          setGuestbookMessages(updatedMessages);
+          localStorage.setItem('guestbookMessages', JSON.stringify(updatedMessages));
         }
+        
+        setNewName('');
+        setNewMessage('');
       } catch (error) {
         console.error('Error saving message:', error);
+        // Fallback to localStorage
+        const updatedMessages = [...guestbookMessages, newMsg];
+        setGuestbookMessages(updatedMessages);
+        localStorage.setItem('guestbookMessages', JSON.stringify(updatedMessages));
+        setNewName('');
+        setNewMessage('');
       }
     }
   };
