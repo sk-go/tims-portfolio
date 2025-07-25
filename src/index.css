@@ -52,10 +52,16 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* Force dark theme regardless of system preference */
+:root {
+  color: rgba(255, 255, 255, 0.87) !important;
+  background-color: #242424 !important;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: rgba(255, 255, 255, 0.87) !important;
+    background-color: #242424 !important;
   }
   a:hover {
     color: #747bff;

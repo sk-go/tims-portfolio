@@ -132,15 +132,9 @@ function Home() {
       <section style={{ maxWidth: '800px', margin: '0 auto 40px' }}>
         <h2 style={{ fontSize: '1.75rem', fontWeight: 'semibold', marginBottom: '20px' }}>Mein Portfolio</h2>
         <ul style={{ listStyleType: 'disc', paddingLeft: '40px', textAlign: 'left', maxWidth: '600px', margin: '0 auto' }}>
-          <li>Projekt 1: KI-AGENTEN die Dich und deine Mutter arbeitslos machen werden</li>
-          <li>Projekt 2: Deine Mutter</li>
+          <li>Projekt 0: Bachelor of Science in Business Administration</li>
+          <li>Projekt 1: KI-AGENTEN für Dich und Mich (Work in Progress)</li>
         </ul>
-      </section>
-      
-      <section style={{ maxWidth: '800px', margin: '0 auto 40px' }}>
-        <h2 style={{ fontSize: '1.75rem', fontWeight: 'semibold', marginBottom: '20px' }}>Eggos Bloggo</h2>
-        <p>Erster Post: Danke für die Domain! Lass was draus machen.</p>
-        <Link to="/blog" style={{ color: 'blue', textDecoration: 'underline' }}>Zum Bloggo</Link>
       </section>
       
       <section style={{ maxWidth: '800px', margin: '0 auto 40px' }}>
@@ -218,6 +212,12 @@ function Home() {
             ))
           )}
         </div>
+      </section>
+
+      <section style={{ maxWidth: '800px', margin: '0 auto 40px' }}>
+        <h2 style={{ fontSize: '1.75rem', fontWeight: 'semibold', marginBottom: '20px' }}>Eggos Bloggo</h2>
+        <p>Erster Post: Danke für die Domain! Lass was draus machen.</p>
+        <Link to="/blog" style={{ color: 'blue', textDecoration: 'underline' }}>Zum Bloggo</Link>
       </section>
       
       <footer style={{ marginTop: '40px' }}>
