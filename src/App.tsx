@@ -1,0 +1,65 @@
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
+function Home() {
+  return (
+    <div style={{ minHeight: '100vh', backgroundColor: '#f0f0f0', padding: '20px', textAlign: 'center' }}>
+      <header style={{ marginBottom: '40px' }}>
+        <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>Herzlichen Glückwunsch zum 27ten, Eggo!</h1>
+        <p style={{ fontSize: '1.25rem' }}>Deine eigene Domain – powered by Sasho. Insta ist out. Hier kannst du dein Lebenslauf und deine Projekte teilen.</p>
+      </header>
+      
+      <section style={{ maxWidth: '800px', margin: '0 auto 40px' }}>
+        <h2 style={{ fontSize: '1.75rem', fontWeight: 'semibold', marginBottom: '20px' }}>Über Tim Eggert</h2>
+        <img src="tim_portrait.png" alt="Tim Eggert Portrait" style={{ maxWidth: '300px', borderRadius: '10px', marginBottom: '20px' }} />
+        <p>Hi, ich bin Tim, ich höre gern Musik (alles von Alessia Cara, über Eminem bis Sam Smith) und spiele alle möglichen online und offline Games. Ich bin ein großer Fan von Harry Potte und Suits. Außerdem habe schon 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000x im Quizduell gewonnen und den Freund deines Freundes deines Freundes durch eine Wette ärmer gemacht. </p>
+      </section>
+      
+      <section style={{ maxWidth: '800px', margin: '0 auto 40px' }}>
+        <h2 style={{ fontSize: '1.75rem', fontWeight: 'semibold', marginBottom: '20px' }}>Mein Portfolio</h2>
+        <ul style={{ listStyleType: 'disc', paddingLeft: '40px', textAlign: 'left', maxWidth: '600px', margin: '0 auto' }}>
+          <li>Projekt 1: KI-AGENTEN die Dich arbeitslos machen werden</li>
+          <li>Projekt 2: KI-AGENTEN die Dich arbeitslos machen werden</li>
+          <li>Projekt 3: KI-AGENTEN die Dich arbeitslos machen werden</li>
+          <li>Projekt 4: KI-AGENTEN die Dich arbeitslos machen werden</li>
+          <li>Projekt 5: KI-AGENTEN die Dich arbeitslos machen werden</li>
+          <li>Projekt 6: KI-AGENTEN die Dich arbeitslos machen werden</li>
+          <li>Projekt 7: KI-AGENTEN die Dich arbeitslos machen werden</li>
+        </ul>
+      </section>
+      
+      <section style={{ maxWidth: '800px', margin: '0 auto 40px' }}>
+        <h2 style={{ fontSize: '1.75rem', fontWeight: 'semibold', marginBottom: '20px' }}>Eggos Bloggo</h2>
+        <p>Erster Post: Danke für die Domain! Lass was draus machen.</p>
+        <Link to="/blog" style={{ color: 'blue', textDecoration: 'underline' }}>Zum Bloggo</Link>
+      </section>
+      
+      <footer style={{ marginTop: '40px' }}>
+        <p>Dein Udio-Lied: <audio controls src="/0.mp4" /></p>
+        <p>Geschenkt von Sasho – 2025</p>
+      </footer>
+    </div>
+  );
+}
+
+function Blog() {
+  return (
+    <div style={{ padding: '20px', textAlign: 'center' }}>
+      <h1 style={{ fontSize: '2rem' }}>Eggos Bloggo</h1>
+      <p>Hier kannst du Posts hinzufügen. Erster Eintrag: Alles Gute zum Geburtstag!</p>
+      <Link to="/">Zurück zur Home</Link>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/blog" element={<Blog />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
