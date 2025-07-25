@@ -125,7 +125,7 @@ function Home() {
       
       <section style={{ maxWidth: '800px', margin: '0 auto 40px' }}>
         <h2 style={{ fontSize: '1.75rem', fontWeight: 'semibold', marginBottom: '20px' }}>Über Tim Eggert</h2>
-        <img src="tim_portrait2.png" alt="Tim Eggert Portrait" style={{ maxWidth: '300px', borderRadius: '10px', marginBottom: '20px' }} />
+        <img src="tim_portrait3.png" alt="Tim Eggert Portrait" style={{ maxWidth: '300px', borderRadius: '10px', marginBottom: '20px' }} />
         <p>Hi, ich bin Tim, ich höre gern Musik (alles von Alessia Cara, über Eminem bis Sam Smith) und spiele alle möglichen online und offline Games. Ich bin ein großer Fan von Harry Potte und Suits. Außerdem habe schon 1000x im Quizduell gewonnen und den Freund deines Freundes deines Freundes durch eine Wette ärmer gemacht. </p>
       </section>
       
